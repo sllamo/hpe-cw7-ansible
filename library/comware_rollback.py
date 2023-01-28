@@ -155,6 +155,7 @@ def main():
             diff_file=dict(required=False, type='str'),
             comparefile=dict(required=False, default=None),
             port=dict(default=830, type='int'),
+            timeout=dict(default=30, type='int'),
             hostname=dict(required=True),
             username=dict(required=True),
             password=dict(required=True),
@@ -170,6 +171,7 @@ def main():
     password = module.params['password']
     port = module.params['port']
     hostname = socket.gethostbyname(module.params['hostname'])
+    timeout = module.params['timeout']
 
     device_args = dict(host=hostname, username=username,
                        password=password, port=port)
