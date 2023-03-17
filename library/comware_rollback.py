@@ -174,7 +174,7 @@ def main():
     timeout = module.params['timeout']
 
     device_args = dict(host=hostname, username=username,
-                       password=password, port=port)
+                       password=password, port=port, timeout=timeout)
 
     device = HPCOM7(**device_args)
 
