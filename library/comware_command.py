@@ -75,7 +75,20 @@ options:
         default: False
         choices: []
         aliases: []
-    
+    ssh_config:
+        description:
+            - ssh_config
+        required: false
+        default: False
+        choices: []
+        aliases: []
+    allow_agent:
+        description:
+            - allow_agent
+        required: false
+        default: False
+        choices: []
+        aliases: []    
 
 """
 
@@ -149,6 +162,8 @@ def main():
             username=dict(required=True),
             password=dict(required=False, default=None),
             look_for_keys=dict(default=False, type='bool'),
+            ssh_config=dict(required=False, type='str'),
+            allow_agent=dict(default=False, type='bool'),
         ),
         supports_check_mode=True
     )
@@ -161,9 +176,11 @@ def main():
     password = module.params['password']
     port = module.params['port']
     hostname = socket.gethostbyname(module.params['hostname'])
-
+    ssh_config = module.params['ssh_config']
+    allow_agent = module.params['allow_agent']
+    
     device_args = dict(host=hostname, username=username,
-                       password=password, port=port)
+                       password=password, port=port, ssh_config=ssh_config, allow_agent=allow_agent)
 
     device = HPCOM7(**device_args)
 
