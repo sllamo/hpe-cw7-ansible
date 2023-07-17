@@ -58,13 +58,14 @@ class HPCOM7(object):
         self.port = kvargs.get('port') or 830
         self.timeout = kvargs.get('timeout') or 30
         self.ssh_config = kvargs.get('ssh_config', None)
+        self.allow_agent = kvargs.get('allow_agent') or False
         self.staged = []
 
         self._locked = False
 
     def open(self,
              hostkey_verify=False,
-             allow_agent=False,
+#             allow_agent=False,
              look_for_keys=False):
         """Open the NETCONF connection to the HP switch.
 
