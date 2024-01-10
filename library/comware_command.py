@@ -158,6 +158,7 @@ def main():
             command=dict(required=False, type='list'),
             file_txt=dict(required=False, type='str'),
             port=dict(default=830, type='int'),
+            timeout=dict(default=300, type='int'),
             hostname=dict(required=True),
             username=dict(required=True),
             password=dict(required=False, default=None),
@@ -175,12 +176,13 @@ def main():
     username = module.params['username']
     password = module.params['password']
     port = module.params['port']
+    timeout = module.params['timeout']
     hostname = socket.gethostbyname(module.params['hostname'])
     ssh_config = module.params['ssh_config']
     allow_agent = module.params['allow_agent']
     
     device_args = dict(host=hostname, username=username,
-                       password=password, port=port, ssh_config=ssh_config, allow_agent=allow_agent)
+                       password=password, port=port, timeout=timeout, ssh_config=ssh_config, allow_agent=allow_agent)
 
     device = HPCOM7(**device_args)
 
